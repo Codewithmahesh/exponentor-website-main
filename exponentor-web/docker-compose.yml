@@ -1,0 +1,15 @@
+services:
+  app:
+    build:
+      context: .
+      args:
+        - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-https://exponentor.com}
+    image: exponentor/expon:latest
+    container_name: expon-app
+    ports:
+      - "3001:3000"
+    # RESEND_API_KEY, CONTACT_TO, CONTACT_FROM for the contact form
+    env_file:
+      - path: .env.local
+        required: false
+    restart: always
